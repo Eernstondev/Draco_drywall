@@ -1,0 +1,194 @@
+/* ==========================================================================
+   Draco Prestige Drywall — responsive.css
+   Mobile-first breakpoints: 640 / 768 / 960 / 1024 / 1600
+   ========================================================================== */
+
+/* ---------- Mobile navigation (< 960px) ---------- */
+@media (max-width: 959.98px) {
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 10px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .nav-toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--c-graphite);
+    transition: transform 0.25s var(--ease);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+  .nav {
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 24px var(--gutter) calc(32px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    background: var(--c-paper);
+    border-top: 1px solid var(--c-mud);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0s linear 0.25s;
+  }
+  .nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0s;
+  }
+  .nav-list { flex-direction: column; gap: 0; }
+  .nav-list li { border-bottom: 1px solid var(--c-mud); }
+  .nav-list a {
+    padding: 16px 0;
+    font-family: var(--f-display);
+    font-size: 1.75rem;
+    font-weight: 500;
+  }
+  .nav-list a::after { display: none; }
+  .nav-list a[aria-current="page"] { color: var(--c-chalk); }
+  .nav-cta { width: 100%; min-height: 52px; }
+
+  body.nav-open { overflow: hidden; }
+}
+
+@media (max-width: 380px) {
+  .brand-name { font-size: 1.25rem; }
+  .brand-sub { display: none; }
+}
+
+/* Full-width buttons on small phones */
+@media (max-width: 479.98px) {
+  .hero-actions .btn,
+  .cta .btn-row .btn,
+  .form-actions .btn { width: 100%; }
+
+  .modal { width: 100%; max-height: 100%; height: 100%; border-radius: 0; }
+  .modal-inner { max-height: 100vh; max-height: 100dvh; }
+}
+
+/* ---------- ≥ 640px ---------- */
+@media (min-width: 640px) {
+  .service-grid,
+  .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aside-panel .steps { grid-template-columns: 1fr; }
+
+  .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .field--full { grid-column: 1 / -1; }
+  .choice-group { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .curriculum,
+  .expertise-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .values,
+  .approach { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .preview-item { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+}
+
+/* ---------- ≥ 768px ---------- */
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .session {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr) minmax(0, 1.4fr) minmax(0, 1fr) auto;
+    padding: 16px 0;
+  }
+  .session .btn { margin-top: 0; justify-self: end; }
+  .sessions-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr) minmax(0, 1.4fr) minmax(0, 1fr) auto;
+    gap: 24px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--c-mud);
+    font-size: var(--fs-small);
+    color: var(--c-concrete);
+  }
+  /* Keeps the header row aligned with the action column of each session */
+  .sessions-head span:last-child { min-width: 110px; }
+  .session > :last-child { min-width: 110px; }
+}
+
+/* ---------- ≥ 960px ---------- */
+@media (min-width: 960px) {
+  :root { --header-h: 80px; }
+
+  .section-head { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: end; }
+  .intro-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+
+  .service-row { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .service-row:nth-child(even) { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .service-row:nth-child(even) .media { order: 2; }
+
+  .cta-inner { grid-template-columns: minmax(0, 1fr) auto; }
+
+  .training-preview-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+
+  .course { grid-template-columns: minmax(0, 8fr) minmax(260px, 4fr); }
+
+  .form-layout { grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr); }
+  .aside-panel { position: sticky; top: calc(var(--header-h) + 24px); }
+
+  .split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+
+  .modal-inner {
+    grid-template-columns: minmax(0, 1.6fr) minmax(320px, 1fr);
+    overflow: hidden;
+  }
+  .modal-gallery { justify-content: center; }
+  .modal-body { overflow-y: auto; }
+}
+
+/* ---------- ≥ 1024px ---------- */
+@media (min-width: 1024px) {
+  .service-grid,
+  .project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .values { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .approach { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .footer-grid { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- Large screens ---------- */
+@media (min-width: 1600px) {
+  :root { --container: 1360px; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Print (registration summary) ---------- */
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .btn,
+  .btn-row { display: none !important; }
+  body { background: #fff; font-size: 11pt; }
+  .page-head { padding: 0 0 16px; }
+  .section { padding-block: 16px; }
+  .payment-box { border-color: #999; }
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request a Quote | Draco Prestige Drywall</title>
+  <meta name="description" content="Request a drywall quote for installation, finishing, repair or ceilings. Add photos of your project.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
+  <script src="js/forms.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+        <span class="brand-name">Draco Prestige</span>
+        <span class="brand-sub">Drywall</span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="btn btn--primary nav-cta" href="quote.html">Request a Quote</a>
+      </nav>
+
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <h1>Request a quote</h1>
+        <p class="lead">Tell us about the project. We review the details and contact you with next steps.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight-top">
+      <div class="container form-layout">
+        <div data-form-container>
+          <form class="form" id="quote-form" data-form="quote" novalidate>
+            <p class="form-alert" role="alert" tabindex="-1" data-form-alert hidden></p>
+
+            <fieldset class="form-section">
+              <legend>Your details</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="q-first">First name</label>
+                  <input class="input" id="q-first" name="firstName" type="text" autocomplete="given-name" required>
+                </div>
+                <div class="field">
+                  <label for="q-last">Last name</label>
+                  <input class="input" id="q-last" name="lastName" type="text" autocomplete="family-name" required>
+                </div>
+                <div class="field">
+                  <label for="q-email">Email</label>
+                  <input class="input" id="q-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+                </div>
+                <div class="field">
+                  <label for="q-phone">Phone</label>
+                  <input class="input" id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" data-validate="phone" required>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Project</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="q-type">Project type</label>
+                  <select class="input" id="q-type" name="projectType" required>
+                    <option value="">Choose a type</option>
+                    <option>Drywall installation</option>
+                    <option>Taping &amp; finishing</option>
+                    <option>Drywall repair</option>
+                    <option>Ceiling installation</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="q-property">Property type</label>
+                  <select class="input" id="q-property" name="propertyType" required>
+                    <option value="">Choose a property type</option>
+                    <option>House</option>
+                    <option>Apartment or condo</option>
+                    <option>Office</option>
+                    <option>Retail or restaurant</option>
+                    <option>Industrial or warehouse</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field field--full">
+                  <label for="q-address">Project address</label>
+                  <input class="input" id="q-address" name="projectAddress" type="text" autocomplete="street-address" required>
+                </div>
+                <div class="field field--full">
+                  <label for="q-description">Project description</label>
+                  <textarea class="input" id="q-description" name="description" minlength="20" required
+                    data-msg-required="Describe the project so we can prepare the quote."
+                    aria-describedby="q-description-hint"></textarea>
+                  <p class="field-hint" id="q-description-hint">Rooms or areas, approximate size, current condition and your timing.</p>
+                </div>
+                <div class="field field--full">
+                  <span class="field-label" id="q-photos-label"><strong>Project photos</strong> <span class="optional">(optional)</span></span>
+                  <label class="dropzone" data-dropzone>
+                    <input class="visually-hidden" id="q-photos" name="photos" type="file" multiple
+                      accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif"
+                      aria-labelledby="q-photos-label" data-upload-input>
+                    <span class="dropzone-title">Add photos</span>
+                    <span class="dropzone-hint">Drop files here or tap to choose. Up to 8 photos, 10 MB each.</span>
+                  </label>
+                  <ul class="file-previews" aria-label="Selected photos" data-upload-list></ul>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="field">
+              <legend>Preferred contact method</legend>
+              <div class="choice-group">
+                <label class="choice"><input type="radio" name="contactMethod" value="email" required> Email</label>
+                <label class="choice"><input type="radio" name="contactMethod" value="phone"> Phone call</label>
+                <label class="choice"><input type="radio" name="contactMethod" value="text"> Text message</label>
+              </div>
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">Send quote request</button>
+              <p class="form-note">We use your details only to reply to this request.</p>
+            </div>
+          </form>
+        </div>
+
+        <aside class="aside-panel" aria-labelledby="next-title">
+          <h2 id="next-title">What happens next</h2>
+          <ol class="steps">
+            <li class="step"><h3>We review your request</h3><p>We read the description and photos and note any questions.</p></li>
+            <li class="step"><h3>We contact you</h3><p>By your preferred method, to confirm details or book a site visit.</p></li>
+            <li class="step"><h3>You receive a quote</h3><p>A written quote with scope, materials and schedule.</p></li>
+          </ol>
+          <div class="aside-contact">
+            <p>Prefer to talk first?</p>
+            <p><strong>[COMPANY PHONE]</strong></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+          <span class="brand-name">Draco Prestige</span>
+          <span class="brand-sub">Drywall</span>
+        </a>
+        <p>Drywall installation, finishing and repair for homes and businesses, and hands-on training for the trade.</p>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="footer-title">Company</h2>
+        <ul class="footer-links">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="quote.html">Request a Quote</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="footer-title">Contact</h2>
+        <address>
+          [COMPANY PHONE]<br>
+          [COMPANY EMAIL]<br>
+          [COMPANY ADDRESS]
+        </address>
+      </div>
+
+      <div>
+        <h2 class="footer-title">Hours</h2>
+        <p class="footer-hours">[OPENING HOURS]</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year></span> Draco Prestige Drywall. All rights reserved.</p>
+      <p><a href="contact.html">Contact</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Draco Prestige Drywall</title>
+  <meta name="description" content="Residential, commercial, ceiling, finishing and repair drywall projects by Draco Prestige Drywall.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
+  <script src="js/projects.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+        <span class="brand-name">Draco Prestige</span>
+        <span class="brand-sub">Drywall</span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="btn btn--primary nav-cta" href="quote.html">Request a Quote</a>
+      </nav>
+
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <figure class="hero-media">
+        <img src="images/page-projects.jpg" alt="Finished commercial interior with new drywall" width="2400" height="1200" fetchpriority="high">
+      </figure>
+      <div class="container page-hero-content">
+        <h1>Projects</h1>
+        <p>Completed residential and commercial work. Filter by type and open a project for more photos.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight-top" aria-label="Project gallery">
+      <div class="container">
+        <div class="filter-bar" role="group" aria-label="Filter projects by type" data-project-filters></div>
+        <p class="visually-hidden" aria-live="polite" data-project-status></p>
+        <ul class="project-grid" data-project-grid></ul>
+        <p class="empty-state" data-project-empty hidden>No projects in this category yet.</p>
+      </div>
+    </section>
+
+    <section class="section cta" aria-labelledby="cta-title">
+      <div class="container cta-inner">
+        <div>
+          <h2 id="cta-title">Have a project coming up?</h2>
+        </div>
+        <div>
+          <p>Send us the details and a few photos. We review the scope and get back to you with a quote.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="quote.html">Request a Quote</a>
+            <a class="btn btn--outline" href="contact.html">Contact us</a>
+          </div>
+          <p class="cta-phone">Or call [COMPANY PHONE]</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+          <span class="brand-name">Draco Prestige</span>
+          <span class="brand-sub">Drywall</span>
+        </a>
+        <p>Drywall installation, finishing and repair for homes and businesses, and hands-on training for the trade.</p>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="footer-title">Company</h2>
+        <ul class="footer-links">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="quote.html">Request a Quote</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="footer-title">Contact</h2>
+        <address>
+          [COMPANY PHONE]<br>
+          [COMPANY EMAIL]<br>
+          [COMPANY ADDRESS]
+        </address>
+      </div>
+
+      <div>
+        <h2 class="footer-title">Hours</h2>
+        <p class="footer-hours">[OPENING HOURS]</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year></span> Draco Prestige Drywall. All rights reserved.</p>
+      <p><a href="contact.html">Contact</a></p>
+    </div>
+  </footer>
+</body>
+</html>

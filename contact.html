@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Draco Prestige Drywall</title>
+  <meta name="description" content="Contact Draco Prestige Drywall by phone, email or with the contact form.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
+  <script src="js/forms.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+        <span class="brand-name">Draco Prestige</span>
+        <span class="brand-sub">Drywall</span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="btn btn--primary nav-cta" href="quote.html">Request a Quote</a>
+      </nav>
+
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <h1>Contact</h1>
+        <p class="lead">Questions about a project or a course? Call, email or send a message. For a project price, use the <a class="text-link" href="quote.html">quote form</a>.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight-top">
+      <div class="container contact-grid">
+        <dl class="contact-list">
+          <div><dt>Phone</dt><dd>[COMPANY PHONE]</dd></div>
+          <div><dt>Email</dt><dd>[COMPANY EMAIL]</dd></div>
+          <div><dt>Address</dt><dd>[COMPANY ADDRESS]</dd></div>
+          <div><dt>Opening hours</dt><dd>[OPENING HOURS]</dd></div>
+        </dl>
+
+        <div data-form-container>
+          <form class="form" id="contact-form" data-form="contact" novalidate>
+            <p class="form-alert" role="alert" tabindex="-1" data-form-alert hidden></p>
+            <div class="form-grid">
+              <div class="field">
+                <label for="c-first">First name</label>
+                <input class="input" id="c-first" name="firstName" type="text" autocomplete="given-name" required>
+              </div>
+              <div class="field">
+                <label for="c-last">Last name</label>
+                <input class="input" id="c-last" name="lastName" type="text" autocomplete="family-name" required>
+              </div>
+              <div class="field">
+                <label for="c-email">Email</label>
+                <input class="input" id="c-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+              </div>
+              <div class="field">
+                <label for="c-phone">Phone <span class="optional">(optional)</span></label>
+                <input class="input" id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" data-validate="phone">
+              </div>
+              <div class="field field--full">
+                <label for="c-subject">Subject</label>
+                <select class="input" id="c-subject" name="subject" required>
+                  <option value="">Choose a subject</option>
+                  <option>A project</option>
+                  <option>Training courses</option>
+                  <option>Group or company training</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field field--full">
+                <label for="c-message">Message</label>
+                <textarea class="input" id="c-message" name="message" minlength="10" required></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">Send message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+          <span class="brand-name">Draco Prestige</span>
+          <span class="brand-sub">Drywall</span>
+        </a>
+        <p>Drywall installation, finishing and repair for homes and businesses, and hands-on training for the trade.</p>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="footer-title">Company</h2>
+        <ul class="footer-links">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="quote.html">Request a Quote</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="footer-title">Contact</h2>
+        <address>
+          [COMPANY PHONE]<br>
+          [COMPANY EMAIL]<br>
+          [COMPANY ADDRESS]
+        </address>
+      </div>
+
+      <div>
+        <h2 class="footer-title">Hours</h2>
+        <p class="footer-hours">[OPENING HOURS]</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year></span> Draco Prestige Drywall. All rights reserved.</p>
+      <p><a href="contact.html">Contact</a></p>
+    </div>
+  </footer>
+</body>
+</html>
