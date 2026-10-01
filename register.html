@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register for a Course | Draco Prestige Drywall</title>
+  <meta name="description" content="Register for a Draco Prestige Drywall training course.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
+  <script src="js/training.js" defer></script>
+  <script src="js/forms.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+        <span class="brand-name">Draco Prestige</span>
+        <span class="brand-sub">Drywall</span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="btn btn--primary nav-cta" href="quote.html">Request a Quote</a>
+      </nav>
+
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <h1>Register for a course</h1>
+        <p class="lead">Choose your course and session, then add your details. We confirm every registration personally.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight-top">
+      <div class="container">
+        <div class="form-layout" data-registration-layout>
+          <form class="form" id="registration-form" data-form="registration" novalidate>
+            <p class="form-alert" role="alert" tabindex="-1" data-form-alert hidden></p>
+
+            <fieldset class="form-section">
+              <legend>Course</legend>
+              <div class="form-grid">
+                <div class="field field--full">
+                  <label for="reg-training">Course</label>
+                  <select class="input" id="reg-training" name="training" required>
+                    <option value="">Choose a course</option>
+                  </select>
+                </div>
+                <div class="field field--full">
+                  <label for="reg-session">Session</label>
+                  <select class="input" id="reg-session" name="session" required disabled>
+                    <option value="">Choose a session</option>
+                  </select>
+                  <p class="field-hint">Full sessions are shown but cannot be selected.</p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Your details</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="reg-first">First name</label>
+                  <input class="input" id="reg-first" name="firstName" type="text" autocomplete="given-name" required>
+                </div>
+                <div class="field">
+                  <label for="reg-last">Last name</label>
+                  <input class="input" id="reg-last" name="lastName" type="text" autocomplete="family-name" required>
+                </div>
+                <div class="field">
+                  <label for="reg-email">Email</label>
+                  <input class="input" id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+                </div>
+                <div class="field">
+                  <label for="reg-phone">Phone</label>
+                  <input class="input" id="reg-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" data-validate="phone" required>
+                </div>
+                <div class="field field--full">
+                  <label for="reg-address">Address</label>
+                  <input class="input" id="reg-address" name="address" type="text" autocomplete="street-address" required>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">Register</button>
+              <p class="form-note">We use your details only to manage your registration.</p>
+            </div>
+          </form>
+
+          <aside class="aside-panel" aria-live="polite" data-registration-summary></aside>
+        </div>
+
+        <div class="confirmation" tabindex="-1" data-registration-confirmation hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Draco Prestige Drywall, home">
+          <span class="brand-name">Draco Prestige</span>
+          <span class="brand-sub">Drywall</span>
+        </a>
+        <p>Drywall installation, finishing and repair for homes and businesses, and hands-on training for the trade.</p>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="footer-title">Company</h2>
+        <ul class="footer-links">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="quote.html">Request a Quote</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="footer-title">Contact</h2>
+        <address>
+          [COMPANY PHONE]<br>
+          [COMPANY EMAIL]<br>
+          [COMPANY ADDRESS]
+        </address>
+      </div>
+
+      <div>
+        <h2 class="footer-title">Hours</h2>
+        <p class="footer-hours">[OPENING HOURS]</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year></span> Draco Prestige Drywall. All rights reserved.</p>
+      <p><a href="contact.html">Contact</a></p>
+    </div>
+  </footer>
+</body>
+</html>
