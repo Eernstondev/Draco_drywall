@@ -13,9 +13,9 @@
       id: 'installation-fondamentaux',
       name: 'Fondamentaux de la pose de cloisons sèches',
       level: 'Débutant',
-      duration: '2 jours (16 heures)',
+      duration: '4 week-ends (8 jours) + 15 jours de pratique supervisée',
       price: 21500,
-      location: 'Amérique, Pétion-Ville',
+      location: 'Amérique, Pétion-Ville, Berthé',
       description:
         'Les cours débuteront le 7 novembre au 29 novembre en week-ends. Les pratiques se dérouleront durant toute la semaine. Vous apprendrez à mesurer, couper, poser et fixer les plaques de cloison sèche sur les murs et plafonds, puis vous quitterez le cours en sachant poser proprement et en toute sécurité.',
       prerequisites: 'Aucune expérience requise.',
@@ -29,59 +29,11 @@
         'Levage, manutention et sécurité sur chantier',
       ],
       sessions: [
-        { id: 'if-2026-11-w1', startDate: '2026-11-07', endDate: '2026-11-08', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 4 },
-        { id: 'if-2026-11-w2', startDate: '2026-11-14', endDate: '2026-11-15', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 6 },
-        { id: 'if-2026-11-w3', startDate: '2026-11-21', endDate: '2026-11-22', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 3 },
-        { id: 'if-2026-11-w4', startDate: '2026-11-28', endDate: '2026-11-29', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 2 },
+        { id: 'if-2026-11-w1', startDate: '2026-11-07', endDate: '2026-11-29', schedule: 'Week-end • 8:00 – 16:00', capacity: 51, enrolled: 1 },
       ],
     },
-    {
-      id: 'jointoiement-finition',
-      name: 'Pose de joints et finition',
-      level: 'Intermédiaire',
-      duration: '3 jours (24 heures)',
-      price: 650,
-      location: '[LIEU DE FORMATION]',
-      description:
-        'Pose de bandes, application d’enduit et ponçage jusqu’à une surface prête à peindre. Comprend les bandes papier et mailles, le choix d’enduit, l’égalisation, les coins et les niveaux de finition 1 à 5.',
-      prerequisites: 'Recommandé : expérience de base en pose ou cours Fondamentaux de la pose de cloisons sèches.',
-      curriculum: [
-        'Types d’enduit et mélange',
-        'Bande papier vs bande maillée',
-        'Jointoiement sur assemblages plans, joints de butée et coins intérieurs',
-        'Application d’enduit sur cornières',
-        'Technique de lissage et de ponçage',
-        'Niveaux de finition 1 à 5 et usages',
-        'Détection et correction des défauts avant la peinture',
-      ],
-      sessions: [
-        { id: 'tf-2026-11', startDate: '2026-11-18', endDate: '2026-11-20', schedule: '8:00 – 16:00', capacity: 8, enrolled: 8 },
-        { id: 'tf-2026-12', startDate: '2026-12-09', endDate: '2026-12-11', schedule: '8:00 – 16:00', capacity: 8, enrolled: 3 },
-      ],
-    },
-    {
-      id: 'reparation-retouche',
-      name: 'Réparation et retouche des cloisons sèches',
-      level: 'Débutant',
-      duration: '1 jour (8 heures)',
-      price: 180,
-      location: '[LIEU DE FORMATION]',
-      description:
-        'Réparez les trous, fissures, vis saillantes et dommages causés par l’eau pour que la correction disparaît après la peinture. Convient aux nouveaux travailleurs, au personnel de maintenance et aux gestionnaires immobiliers.',
-      prerequisites: 'Aucune expérience requise.',
-      curriculum: [
-        'Évaluation des dommages et identification de la cause',
-        'Petits trous, bosses et fissures',
-        'Méthodes de retouche pour trous moyens',
-        'Découpe et remplacement des sections endommagées',
-        'Mise en correspondance de la texture et intégration à la finition existante',
-      ],
-      sessions: [
-        { id: 'rp-2026-11', startDate: '2026-11-28', endDate: '2026-11-28', schedule: '9:00 – 17:00', capacity: 12, enrolled: 5 },
-      ],
-    },
+    
   ];
-
   const LOW_SEATS_THRESHOLD = 3;
   const esc = Draco.escapeHTML;
 
