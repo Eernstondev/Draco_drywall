@@ -140,8 +140,17 @@
   async function send(formKey, formData) {
     const endpoint = FORM_ENDPOINTS[formKey];
     if (!endpoint) {
-      console.info(`[forms] No endpoint configured for "${formKey}". Data was not sent:`, Object.fromEntries(formData));
-      return { sent: false };
+      const data = Object.fromEntries(formData);
+      const number = '50937010055';
+      const subject = formKey === 'quote'
+        ? 'Demande de devis Maison Clark Drywall'
+        : 'Message de contact Maison Clark Drywall';
+      const text = formKey === 'quote'
+        ? `Bonjour Maison Clark Drywall,\n\nJe souhaite obtenir un devis.\n\nPrénom: ${data.firstName || ''}\nNom: ${data.lastName || ''}\nCourriel: ${data.email || ''}\nTéléphone: ${data.phone || ''}\nType de projet: ${data.projectType || ''}\nType de bien: ${data.propertyType || ''}\nAdresse: ${data.projectAddress || ''}\nDescription: ${data.description || ''}\nMéthode de contact: ${data.contactMethod || ''}`
+        : `Bonjour Maison Clark Drywall,\n\nJe vous contacte via le formulaire de contact.\n\nPrénom: ${data.firstName || ''}\nNom: ${data.lastName || ''}\nCourriel: ${data.email || ''}\nTéléphone: ${data.phone || ''}\nObjet: ${data.subject || ''}\nMessage: ${data.message || ''}`;
+      const url = `https://wa.me/${number}?text=${encodeURIComponent(`${subject}\n\n${text}`)}`;
+      window.open(url, '_blank');
+      return { sent: true, via: 'whatsapp' };
     }
     const response = await fetch(endpoint, {
       method: 'POST',
