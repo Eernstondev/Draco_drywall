@@ -14,10 +14,10 @@
       name: 'Fondamentaux de la pose de cloisons sèches',
       level: 'Débutant',
       duration: '2 jours (16 heures)',
-      price: 450,
-      location: '[LIEU DE FORMATION]',
+      price: 21500,
+      location: 'Amérique, Pétion-Ville',
       description:
-        'Apprenez à mesurer, couper, poser et fixer les plaques de cloison sèche sur les murs et plafonds. Vous travaillez sur des assemblages de taille réelle et quittez le cours en sachant poser une pièce proprement et en toute sécurité.',
+        'Les cours débuteront le 7 novembre au 29 novembre en week-ends. Les pratiques se dérouleront durant toute la semaine. Vous apprendrez à mesurer, couper, poser et fixer les plaques de cloison sèche sur les murs et plafonds, puis vous quitterez le cours en sachant poser proprement et en toute sécurité.',
       prerequisites: 'Aucune expérience requise.',
       curriculum: [
         'Outils, matériaux et types de plaques',
@@ -29,9 +29,10 @@
         'Levage, manutention et sécurité sur chantier',
       ],
       sessions: [
-        { id: 'if-2026-11', startDate: '2026-11-07', endDate: '2026-11-08', schedule: '8:00 – 16:00', capacity: 10, enrolled: 4 },
-        { id: 'if-2026-12', startDate: '2026-12-05', endDate: '2026-12-06', schedule: '8:00 – 16:00', capacity: 10, enrolled: 9 },
-        { id: 'if-2027-01', startDate: '2027-01-16', endDate: '2027-01-17', schedule: '8:00 – 16:00', capacity: 10, enrolled: 0 },
+        { id: 'if-2026-11-w1', startDate: '2026-11-07', endDate: '2026-11-08', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 4 },
+        { id: 'if-2026-11-w2', startDate: '2026-11-14', endDate: '2026-11-15', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 6 },
+        { id: 'if-2026-11-w3', startDate: '2026-11-21', endDate: '2026-11-22', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 3 },
+        { id: 'if-2026-11-w4', startDate: '2026-11-28', endDate: '2026-11-29', schedule: 'Week-end • 8:00 – 16:00', capacity: 10, enrolled: 2 },
       ],
     },
     {
