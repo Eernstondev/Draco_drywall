@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Draco Prestige Drywall — projects.js
+   Maison Clark Drywall — projects.js
    Project data (edit PROJECTS below) + rendering for:
      [data-project-grid] + [data-project-filters]  full gallery (projects.html)
      [data-projects-featured]                       featured projects (index.html)
@@ -8,7 +8,7 @@
 (function (Draco) {
   'use strict';
 
-  const CATEGORIES = ['Residential', 'Commercial', 'Ceiling', 'Finishing', 'Repair'];
+  const CATEGORIES = ['Résidentiel', 'Commercial', 'Plafonds', 'Finition', 'Réparation'];
 
   /* ------------------------------------------------------------------------
      PROJECTS — replace with real projects and photos.
@@ -18,129 +18,129 @@
      ------------------------------------------------------------------------ */
   const PROJECTS = [
     {
-      id: 'basement-finish',
-      title: 'Basement finishing',
-      category: 'Residential',
-      location: '[PROJECT LOCATION]',
+      id: 'sous-sol',
+      title: 'Rénovation du sous-sol',
+      category: 'Résidentiel',
+      location: '[LIEU DU PROJET]',
       featured: true,
-      description: 'Full basement build-out: board on new framing, moisture-resistant board in the utility area and a smooth finish ready for paint.',
-      scope: ['Installation', 'Taping & finishing', 'Moisture-resistant board'],
+      description: 'Aménagement complet du sous-sol : plaques sur une nouvelle charpente, plaques résistantes à l’humidité dans la zone utilitaire et finition lisse prête à peindre.',
+      scope: ['Installation', 'Pose de joints et finition', 'Plaques résistantes à l’humidité'],
       images: [
-        { src: 'images/projects/basement-finish-1.jpg', alt: 'Finished basement living area with smooth painted walls' },
-        { src: 'images/projects/basement-finish-2.jpg', alt: 'Basement walls taped and coated before sanding' },
-        { src: 'images/projects/basement-finish-3.jpg', alt: 'Drywall hung on new basement framing' },
+        { src: 'images/projects/basement-finish-1.jpg', alt: 'Séjour de sous-sol fini avec murs peints et lisses' },
+        { src: 'images/projects/basement-finish-2.jpg', alt: 'Murs de sous-sol joints et enduits avant le ponçage' },
+        { src: 'images/projects/basement-finish-3.jpg', alt: 'Plaques de cloisons placées sur une nouvelle charpente' },
       ],
     },
     {
       id: 'open-plan-living',
-      title: 'Open-plan living area',
-      category: 'Residential',
-      location: '[PROJECT LOCATION]',
+      title: 'Espace de vie ouvert',
+      category: 'Résidentiel',
+      location: '[LIEU DU PROJET]',
       featured: false,
-      description: 'Walls and a long continuous ceiling in an open-plan renovation, finished to a high level for large windows and raking light.',
-      scope: ['Installation', 'Ceiling', 'Level 5 finish'],
+      description: 'Murs et un long plafond continu dans une rénovation ouverte, fini à un niveau élevé pour les grandes fenêtres et la lumière rasante.',
+      scope: ['Installation', 'Plafond', 'Finition de niveau 5'],
       images: [
-        { src: 'images/projects/open-plan-living-1.jpg', alt: 'Bright open-plan room with finished walls and ceiling' },
-        { src: 'images/projects/open-plan-living-2.jpg', alt: 'Ceiling board installed across the open-plan space' },
-        { src: 'images/projects/open-plan-living-3.jpg', alt: 'Skim-coated wall under natural light' },
+        { src: 'images/projects/open-plan-living-1.jpg', alt: 'Pièce ouverte lumineuse avec murs et plafond finis' },
+        { src: 'images/projects/open-plan-living-2.jpg', alt: 'Plaques de plafond installées sur l’espace ouvert' },
+        { src: 'images/projects/open-plan-living-3.jpg', alt: 'Mur lissé sous la lumière naturelle' },
       ],
     },
     {
       id: 'office-fit-out',
-      title: 'Office fit-out',
+      title: 'Aménagement de bureau',
       category: 'Commercial',
-      location: '[PROJECT LOCATION]',
+      location: '[LIEU DU PROJET]',
       featured: true,
-      description: 'Partition walls on steel studs for meeting rooms and private offices, with acoustic insulation and fire-rated board where required by the drawings.',
-      scope: ['Steel stud partitions', 'Fire-rated board', 'Acoustic insulation'],
+      description: 'Cloisons de séparation sur montants métalliques pour salles de réunion et bureaux privés, avec isolation acoustique et plaques ignifuges selon les plans.',
+      scope: ['Cloisons sur montants acier', 'Plaques ignifuges', 'Isolation acoustique'],
       images: [
-        { src: 'images/projects/office-fit-out-1.jpg', alt: 'Finished office corridor with new partition walls' },
-        { src: 'images/projects/office-fit-out-2.jpg', alt: 'Steel stud framing for office partitions' },
-        { src: 'images/projects/office-fit-out-3.jpg', alt: 'Meeting room walls taped and ready for paint' },
+        { src: 'images/projects/office-fit-out-1.jpg', alt: 'Corridor de bureau fini avec nouvelles cloisons' },
+        { src: 'images/projects/office-fit-out-2.jpg', alt: 'Charpente en acier pour cloisons de bureau' },
+        { src: 'images/projects/office-fit-out-3.jpg', alt: 'Murs de salle de réunion joints et prêts à être peints' },
       ],
     },
     {
       id: 'retail-unit',
-      title: 'Retail unit',
+      title: 'Commerce',
       category: 'Commercial',
-      location: '[PROJECT LOCATION]',
+      location: '[LIEU DU PROJET]',
       featured: false,
-      description: 'Demising walls, bulkheads and a stockroom partition for a new retail tenant, scheduled around the other trades on site.',
-      scope: ['Demising walls', 'Bulkheads', 'Taping & finishing'],
+      description: 'Murs de séparation, caissons et cloison d’atelier pour un nouveau locataire commercial, planifiés autour des autres corps de métier sur chantier.',
+      scope: ['Murs de séparation', 'Caissons', 'Pose de joints et finition'],
       images: [
-        { src: 'images/projects/retail-unit-1.jpg', alt: 'Retail space with finished walls and bulkheads' },
-        { src: 'images/projects/retail-unit-2.jpg', alt: 'Bulkhead framing above the shop front' },
-        { src: 'images/projects/retail-unit-3.jpg', alt: 'Stockroom partition with board installed' },
+        { src: 'images/projects/retail-unit-1.jpg', alt: 'Espace commercial avec murs et caissons finis' },
+        { src: 'images/projects/retail-unit-2.jpg', alt: 'Charpente de caisson au-dessus de la façade du commerce' },
+        { src: 'images/projects/retail-unit-3.jpg', alt: 'Cloison de réserve avec plaques installées' },
       ],
     },
     {
       id: 'tray-ceiling',
-      title: 'Tray ceiling',
-      category: 'Ceiling',
-      location: '[PROJECT LOCATION]',
+      title: 'Plafond en caisson',
+      category: 'Plafonds',
+      location: '[LIEU DU PROJET]',
       featured: true,
-      description: 'Stepped tray ceiling in a dining room with crisp corner bead on every edge and a recess for indirect lighting.',
-      scope: ['Ceiling framing', 'Corner bead', 'Finishing'],
+      description: 'Plafond en caisson à étages dans une salle à manger avec des cornières nettes sur chaque angle et un renfoncement pour l’éclairage indirect.',
+      scope: ['Charpente de plafond', 'Cornières', 'Finition'],
       images: [
-        { src: 'images/projects/tray-ceiling-1.jpg', alt: 'Finished tray ceiling with clean stepped edges' },
-        { src: 'images/projects/tray-ceiling-2.jpg', alt: 'Tray ceiling framing before board' },
-        { src: 'images/projects/tray-ceiling-3.jpg', alt: 'Corner bead coated on the ceiling steps' },
+        { src: 'images/projects/tray-ceiling-1.jpg', alt: 'Plafond en caisson fini avec bords propres' },
+        { src: 'images/projects/tray-ceiling-2.jpg', alt: 'Charpente du plafond en caisson avant pose' },
+        { src: 'images/projects/tray-ceiling-3.jpg', alt: 'Cornières enduites sur les étages du plafond' },
       ],
     },
     {
       id: 'suspended-ceiling',
-      title: 'Suspended office ceiling',
-      category: 'Ceiling',
-      location: '[PROJECT LOCATION]',
+      title: 'Plafond suspendu de bureau',
+      category: 'Plafonds',
+      location: '[LIEU DU PROJET]',
       featured: false,
-      description: 'Suspended drywall ceiling on a steel grid, with access panels and openings coordinated with lighting and ventilation.',
-      scope: ['Suspended grid', 'Access panels', 'Finishing'],
+      description: 'Plafond suspendu en cloisons sèches sur grille métallique, avec panneaux d’accès et ouvertures coordonnés à l’éclairage et à la ventilation.',
+      scope: ['Grille suspendue', 'Panneaux d’accès', 'Finition'],
       images: [
-        { src: 'images/projects/suspended-ceiling-1.jpg', alt: 'Finished suspended ceiling in an office' },
-        { src: 'images/projects/suspended-ceiling-2.jpg', alt: 'Steel suspension grid before board' },
-        { src: 'images/projects/suspended-ceiling-3.jpg', alt: 'Access panel set flush into the ceiling' },
+        { src: 'images/projects/suspended-ceiling-1.jpg', alt: 'Plafond suspendu fini dans un bureau' },
+        { src: 'images/projects/suspended-ceiling-2.jpg', alt: 'Grille métallique de suspension avant la pose' },
+        { src: 'images/projects/suspended-ceiling-3.jpg', alt: 'Panneau d’accès aligné dans le plafond' },
       ],
     },
     {
       id: 'feature-wall',
-      title: 'Level 5 feature wall',
-      category: 'Finishing',
-      location: '[PROJECT LOCATION]',
+      title: 'Mur d’accent de niveau 5',
+      category: 'Finition',
+      location: '[LIEU DU PROJET]',
       featured: false,
-      description: 'Full skim coat over a tall wall lit by wall-washer lights, where any joint or ridge would show.',
-      scope: ['Skim coat', 'Level 5 finish'],
+      description: 'Enduit de finition complet sur un mur haut éclairé par des projecteurs, où tout joint ou arête se verraient immédiatement.',
+      scope: ['Enduit de finition', 'Finition niveau 5'],
       images: [
-        { src: 'images/projects/feature-wall-1.jpg', alt: 'Tall smooth wall under grazing light' },
-        { src: 'images/projects/feature-wall-2.jpg', alt: 'Skim coat being applied across the wall' },
-        { src: 'images/projects/feature-wall-3.jpg', alt: 'Sanded wall checked with a work light' },
+        { src: 'images/projects/feature-wall-1.jpg', alt: 'Mur très lisse sous une lumière rasante' },
+        { src: 'images/projects/feature-wall-2.jpg', alt: 'Application de l’enduit de finition sur le mur' },
+        { src: 'images/projects/feature-wall-3.jpg', alt: 'Mur poncé vérifié à la lumière de travail' },
       ],
     },
     {
       id: 'stairwell',
-      title: 'Stairwell finishing',
-      category: 'Finishing',
-      location: '[PROJECT LOCATION]',
+      title: 'Finition de cage d’escalier',
+      category: 'Finition',
+      location: '[LIEU DU PROJET]',
       featured: false,
-      description: 'Taping and finishing a double-height stairwell, with scaffolding and many outside corners to keep straight and true.',
-      scope: ['Taping & finishing', 'Corner bead'],
+      description: 'Pose de joints et finition d’une cage d’escalier à double hauteur, avec échafaudage et de nombreux angles extérieurs à garder droits et nets.',
+      scope: ['Pose de joints et finition', 'Cornières'],
       images: [
-        { src: 'images/projects/stairwell-1.jpg', alt: 'Finished double-height stairwell' },
-        { src: 'images/projects/stairwell-2.jpg', alt: 'Stairwell corners with bead installed' },
-        { src: 'images/projects/stairwell-3.jpg', alt: 'Stairwell walls coated and ready to sand' },
+        { src: 'images/projects/stairwell-1.jpg', alt: 'Cage d’escaliers double hauteur finie' },
+        { src: 'images/projects/stairwell-2.jpg', alt: 'Angles de cage d’escaliers avec cornières installées' },
+        { src: 'images/projects/stairwell-3.jpg', alt: 'Murs de cage d’escaliers enduits et prêts au ponçage' },
       ],
     },
     {
       id: 'water-damage-repair',
-      title: 'Water damage repair',
-      category: 'Repair',
-      location: '[PROJECT LOCATION]',
+      title: 'Réparation après dégâts d’eau',
+      category: 'Réparation',
+      location: '[LIEU DU PROJET]',
       featured: false,
-      description: 'Damaged ceiling and wall sections removed after a leak, replaced and blended into the surrounding finish.',
-      scope: ['Section replacement', 'Blending', 'Finishing'],
+      description: 'Sections de plafond et de mur endommagées retirées après une fuite, remplacées puis intégrées à la finition environnante.',
+      scope: ['Remplacement de sections', 'Intégration', 'Finition'],
       images: [
-        { src: 'images/projects/water-damage-repair-1.jpg', alt: 'Repaired ceiling with no visible patch' },
-        { src: 'images/projects/water-damage-repair-2.jpg', alt: 'Damaged ceiling section cut out' },
-        { src: 'images/projects/water-damage-repair-3.jpg', alt: 'New board patched into the ceiling' },
+        { src: 'images/projects/water-damage-repair-1.jpg', alt: 'Plafond réparé sans patch visible' },
+        { src: 'images/projects/water-damage-repair-2.jpg', alt: 'Section de plafond endommagée découpée' },
+        { src: 'images/projects/water-damage-repair-3.jpg', alt: 'Nouvelle plaque intégrée au plafond' },
       ],
     },
   ];
@@ -187,23 +187,23 @@
           <div class="modal-gallery">
             <div class="modal-stage">
               <img class="modal-image" src="" alt="" width="1600" height="1200">
-              <button type="button" class="modal-nav modal-nav--prev" aria-label="Previous photo">${ICONS.prev}</button>
-              <button type="button" class="modal-nav modal-nav--next" aria-label="Next photo">${ICONS.next}</button>
+              <button type="button" class="modal-nav modal-nav--prev" aria-label="Photo précédente">${ICONS.prev}</button>
+              <button type="button" class="modal-nav modal-nav--next" aria-label="Photo suivante">${ICONS.next}</button>
               <p class="modal-counter" aria-live="polite"></p>
             </div>
-            <ul class="modal-thumbs" aria-label="Project photos"></ul>
+            <ul class="modal-thumbs" aria-label="Photos du projet"></ul>
           </div>
           <div class="modal-body">
             <p class="modal-cat"></p>
             <h2 class="modal-title" id="project-modal-title"></h2>
             <p class="modal-desc"></p>
             <dl class="facts">
-              <div><dt>Location</dt><dd class="modal-location"></dd></div>
-              <div><dt>Scope</dt><dd><ul class="modal-scope"></ul></dd></div>
+              <div><dt>Lieu</dt><dd class="modal-location"></dd></div>
+              <div><dt>Portée</dt><dd><ul class="modal-scope"></ul></dd></div>
             </dl>
-            <a class="btn btn--primary" href="quote.html">Request a Quote</a>
+            <a class="btn btn--primary" href="quote.html">Demander un devis</a>
           </div>
-          <button type="button" class="modal-close" aria-label="Close">${ICONS.close}</button>
+          <button type="button" class="modal-close" aria-label="Fermer">${ICONS.close}</button>
         </div>`;
       document.body.appendChild(el);
 

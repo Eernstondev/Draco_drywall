@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Draco Prestige Drywall — main.js
+   Maison Clark Drywall — main.js
    Shared behaviour (navigation, header, hero) and small helpers used by the
    other scripts through the window.Draco namespace.
    ========================================================================== */
@@ -10,8 +10,8 @@ window.Draco = window.Draco || {};
 
   /* ---------- Site settings ---------- */
   Draco.config = {
-    locale: 'en-US',
-    currency: 'USD', // Change to 'CAD', 'EUR', etc. Used for all prices.
+    locale: 'fr-CA',
+    currency: 'CAD',
   };
 
   /* ---------- Helpers ---------- */
@@ -55,7 +55,7 @@ window.Draco = window.Draco || {};
   function setNav(open) {
     if (!toggle || !nav) return;
     toggle.setAttribute('aria-expanded', String(open));
-    if (toggleLabel) toggleLabel.textContent = open ? 'Close menu' : 'Open menu';
+    if (toggleLabel) toggleLabel.textContent = open ? 'Fermer le menu' : 'Ouvrir le menu';
     nav.classList.toggle('is-open', open);
     document.body.classList.toggle('nav-open', open);
   }
