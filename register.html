@@ -101,12 +101,35 @@
                   <label for="reg-address">Adresse</label>
                   <input class="input" id="reg-address" name="address" type="text" autocomplete="street-address" required>
                 </div>
+                <div class="field field--full">
+                  <label>Paiement</label>
+                  <div class="payment-options" role="radiogroup" aria-label="Choisir le moyen de paiement">
+                    <label class="payment-option">
+                      <input type="radio" name="paymentMethod" value="Mon Cash" required>
+                      <span>Mon Cash</span>
+                    </label>
+                    <label class="payment-option">
+                      <input type="radio" name="paymentMethod" value="Natcash" required>
+                      <span>Natcash</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="field field--full">
+                  <label for="reg-payment-account">Compte du paiement</label>
+                  <input class="input" id="reg-payment-account" name="paymentAccount" type="text" readonly placeholder="Sélectionnez un moyen de paiement">
+                  <p class="field-hint">Mon Cash : +509 37 01 0055 • Natcash : +509 44 45 4869</p>
+                </div>
+                <div class="field field--full">
+                  <label for="reg-receipt">Reçu de paiement</label>
+                  <input class="input" id="reg-receipt" name="receipt" type="file" accept="image/*" required>
+                  <p class="field-hint">Déposez ici le reçu de votre versement. C’est le reçu que vous devez mettre pour confirmer votre place.</p>
+                </div>
               </div>
             </fieldset>
 
             <div class="form-actions">
               <button type="submit" class="btn btn--primary">S’inscrire</button>
-              <p class="form-note">Nous utilisons vos informations uniquement pour gérer votre inscription.</p>
+              <p class="form-note">Nous utilisons vos informations uniquement pour gérer votre inscription et le suivi du paiement.</p>
             </div>
           </form>
 

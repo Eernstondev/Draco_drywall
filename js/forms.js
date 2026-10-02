@@ -8,10 +8,21 @@
 (function (Draco) {
   'use strict';
 
+  const SUPABASE = {
+    url: 'https://nuidkenlkqdjfcwymndg.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51aWRrZW5sa3FkamZjd3ltbmRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NTgwODMsImV4cCI6MjEwNjUzNDA4M30.JmblDpx4J6SFijgJQ08xF2rgrNaYOepp2N3rrh6dDJU',
+    storageBucket: 'training-receipts',
+  };
+
+  const REGISTRATION_FEES = {
+    registration: 1500,
+    initialPayment: 13500,
+  };
+
   const FORM_ENDPOINTS = {
     quote: '',
     contact: '',
-    registration: '',
+    registration: `${SUPABASE.url}/rest/v1/training_registrations`,
   };
 
   const PAYMENT = {
@@ -87,7 +98,13 @@
   }
 
   function validateField(el) {
-    if (el.disabled || el.type === 'submit' || el.type === 'button' || el.type === 'file') return true;
+    if (el.disabled || el.type === 'submit' || el.type === 'button') return true;
+    if (el.type === 'file') {
+      const hasFile = !!(el.files && el.files.length > 0);
+      const message = el.required && !hasFile ? 'Ajoutez le reçu de paiement pour confirmer votre place.' : '';
+      setError(el, message);
+      return !message;
+    }
     runCustomChecks(el);
     const message = errorMessage(el);
     setError(el, message);
@@ -333,15 +350,67 @@
   const regForm = document.querySelector('[data-form="registration"]');
   if (regForm && Draco.trainings) setupRegistration(regForm);
 
+  function formatGDS(value) {
+    return `${Number(value).toLocaleString('fr-FR')} GDS`;
+  }
+
+  async function uploadReceiptToSupabase(file) {
+    if (!file) return null;
+    const safeName = file.name.trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '');
+    const path = `receipts/${Date.now()}-${safeName}`;
+    const response = await fetch(`${SUPABASE.url}/storage/v1/object/${SUPABASE.storageBucket}/${path}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE.anonKey,
+        'Authorization': `Bearer ${SUPABASE.anonKey}`,
+        'Content-Type': file.type || 'application/octet-stream',
+        'x-upsert': 'true',
+      },
+      body: file,
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`Storage upload failed (${response.status}): ${body}`);
+    }
+
+    return `${SUPABASE.url}/storage/v1/object/public/${SUPABASE.storageBucket}/${path}`;
+  }
+
+  async function insertRegistrationInSupabase(payload) {
+    const response = await fetch(FORM_ENDPOINTS.registration, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'apikey': SUPABASE.anonKey,
+        'Authorization': `Bearer ${SUPABASE.anonKey}`,
+      },
+      body: JSON.stringify([payload]),
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`Supabase insert failed (${response.status}): ${body}`);
+    }
+
+    return true;
+  }
+
   function setupRegistration(form) {
     const T = Draco.trainings;
     const trainingSelect = form.querySelector('#reg-training');
     const sessionSelect = form.querySelector('#reg-session');
     const summary = document.querySelector('[data-registration-summary]');
-    const layout = document.querySelector('[data-registration-layout]');
-    const confirmation = document.querySelector('[data-registration-confirmation]');
     const submit = form.querySelector('[type="submit"]');
     const idleLabel = submit.textContent;
+    const paymentRadios = form.querySelectorAll('input[name="paymentMethod"]');
+    const paymentAccount = form.querySelector('#reg-payment-account');
+    const receiptInput = form.querySelector('#reg-receipt');
+    const paymentByMethod = {
+      'Mon Cash': '+509 37 01 0055',
+      Natcash: '+509 44 45 4869',
+    };
 
     wireLiveValidation(form);
 
@@ -378,6 +447,9 @@
         return;
       }
       const status = session ? T.seatStatus(session) : null;
+      const registrationFee = REGISTRATION_FEES.registration;
+      const participationFee = Number(training.price || REGISTRATION_FEES.initialPayment);
+      const firstPayment = REGISTRATION_FEES.initialPayment;
       summary.innerHTML = `
         <h2>${esc(training.name)}</h2>
         <dl class="facts">
@@ -387,8 +459,26 @@
           <div><dt>Horaire</dt><dd>${session ? esc(session.schedule) : '–'}</dd></div>
           <div><dt>Lieu</dt><dd>${esc(session ? T.sessionLocation(training, session) : training.location)}</dd></div>
           <div><dt>Disponibilité</dt><dd>${session ? esc(status.label) : '–'}</dd></div>
+          <div><dt>Inscription</dt><dd>${esc(formatGDS(registrationFee))}</dd></div>
+          <div><dt>Participation</dt><dd>${esc(formatGDS(participationFee))}</dd></div>
+          <div><dt>Premier versement</dt><dd>${esc(formatGDS(firstPayment))}</dd></div>
         </dl>`;
     }
+
+    function updatePaymentAccount() {
+      const selected = form.querySelector('input[name="paymentMethod"]:checked');
+      if (!selected) {
+        paymentAccount.value = '';
+        paymentAccount.placeholder = 'Sélectionnez un moyen de paiement';
+        return;
+      }
+      paymentAccount.value = paymentByMethod[selected.value] || '';
+      paymentAccount.placeholder = paymentByMethod[selected.value] || '';
+    }
+
+    paymentRadios.forEach((radio) => {
+      radio.addEventListener('change', updatePaymentAccount);
+    });
 
     trainingSelect.addEventListener('change', () => {
       fillSessions(T.get(trainingSelect.value), null);
@@ -398,5 +488,78 @@
     sessionSelect.addEventListener('change', renderSummary);
     fillSessions(T.get(trainingSelect.value), null);
     renderSummary();
+    updatePaymentAccount();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearFormError(form);
+      const invalid = validateForm(form);
+      if (invalid) { invalid.focus(); return; }
+
+      const chosenTraining = T.get(trainingSelect.value);
+      const chosenSession = T.getSession(chosenTraining, sessionSelect.value);
+      const chosenPayment = form.querySelector('input[name="paymentMethod"]:checked');
+      if (!chosenTraining || !chosenSession || !chosenPayment) {
+        showFormError(form, 'Choisissez un cours, une session et un moyen de paiement avant de continuer.');
+        return;
+      }
+
+      setLoading(submit, true, idleLabel);
+
+      try {
+        const receiptFile = receiptInput.files && receiptInput.files[0] ? receiptInput.files[0] : null;
+        const receiptUrl = await uploadReceiptToSupabase(receiptFile);
+        const payload = {
+          first_name: form.elements.firstName.value.trim(),
+          last_name: form.elements.lastName.value.trim(),
+          email: form.elements.email.value.trim(),
+          phone: form.elements.phone.value.trim(),
+          address: form.elements.address.value.trim(),
+          training_id: chosenTraining.id,
+          training_name: chosenTraining.name,
+          session_id: chosenSession.id,
+          session_label: `${Draco.formatDateRange(chosenSession.startDate, chosenSession.endDate)} • ${chosenSession.schedule}`,
+          payment_method: chosenPayment.value,
+          payment_account: paymentAccount.value,
+          payment_amount: REGISTRATION_FEES.initialPayment,
+          registration_fee: REGISTRATION_FEES.registration,
+          participation_fee: Number(chosenTraining.price || REGISTRATION_FEES.initialPayment),
+          receipt_file_name: receiptFile ? receiptFile.name : null,
+          receipt_url: receiptUrl,
+          status: 'pending',
+          created_at: new Date().toISOString(),
+        };
+
+        await insertRegistrationInSupabase(payload);
+
+        const whatsappText = encodeURIComponent(
+          `Bonjour Maison Clark Drywall,\n\nNouvelle inscription reçue :\n- Prénom : ${payload.first_name}\n- Nom : ${payload.last_name}\n- Courriel : ${payload.email}\n- Téléphone : ${payload.phone}\n- Cours : ${payload.training_name}\n- Session : ${payload.session_label}\n- Paiement : ${payload.payment_method}\n- Compte : ${payload.payment_account}\n- Premier versement : ${formatGDS(payload.payment_amount)}\n\nMerci d’envoyer à nouveau le reçu de paiement pour confirmer le suivi rapide de l’inscription.`
+        );
+
+        window.open(`https://wa.me/50937010055?text=${whatsappText}`, '_blank');
+
+        const confirmation = document.querySelector('[data-registration-confirmation]');
+        if (confirmation) {
+          confirmation.hidden = false;
+          confirmation.innerHTML = `
+            <h2>Inscription enregistrée</h2>
+            <p>Merci, ${esc(payload.first_name)}. Votre inscription a bien été enregistrée et le message a été envoyé sur WhatsApp pour confirmation.</p>
+            <p>Merci d’envoyer à nouveau le reçu de paiement afin que le suivi soit plus rapide.</p>
+          `;
+          confirmation.focus();
+        }
+
+        form.reset();
+        trainingSelect.value = '';
+        fillSessions(null, null);
+        updatePaymentAccount();
+        renderSummary();
+      } catch (error) {
+        console.error(error);
+        showFormError(form, 'L’inscription n’a pas pu être envoyée. Vérifiez votre connexion ou réessayez plus tard.');
+      } finally {
+        setLoading(submit, false, idleLabel);
+      }
+    });
   }
 })(window.Draco);
