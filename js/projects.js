@@ -25,9 +25,9 @@
       description: 'Aménagement complet du sous-sol : plaques sur une nouvelle charpente, plaques résistantes à l’humidité dans la zone utilitaire et finition lisse prête à peindre.',
       scope: ['Installation', 'Pose de joints et finition', 'Plaques résistantes à l’humidité'],
       images: [
-        { src: 'images/projects/IMG_2525.jpg', alt: 'Séjour de sous-sol fini avec murs peints et lisses' },
-        { src: 'images/projects/IMG_2526.jpg', alt: 'Murs de sous-sol joints et enduits avant le ponçage' },
-        { src: 'images/projects/IMG_2524.jpg', alt: 'Plaques de cloisons placées sur une nouvelle charpente' },
+        { src: 'images/projects/IMG_2525.JPG', alt: 'Séjour de sous-sol fini avec murs peints et lisses' },
+        { src: 'images/projects/IMG_2526.JPG', alt: 'Murs de sous-sol joints et enduits avant le ponçage' },
+        { src: 'images/projects/IMG_2524.JPG', alt: 'Plaques de cloisons placées sur une nouvelle charpente' },
       ],
     },
     {
@@ -51,9 +51,9 @@
       description: 'Cloisons de séparation sur montants métalliques pour salles de réunion et bureaux privés, avec isolation acoustique et plaques ignifuges selon les plans.',
       scope: ['Cloisons sur montants acier', 'Plaques ignifuges', 'Isolation acoustique'],
       images: [
-        { src: 'images/projects/IMG_2530.jpg', alt: 'Corridor de bureau fini avec nouvelles cloisons' },
-        { src: 'images/projects/IMG_2531.jpg', alt: 'Charpente en acier pour cloisons de bureau' },
-        { src: 'images/projects/IMG_2532.jpg', alt: 'Murs de salle de réunion joints et prêts à être peints' },
+        { src: 'images/projects/IMG_2530.JPG', alt: 'Corridor de bureau fini avec nouvelles cloisons' },
+        { src: 'images/projects/IMG_2531.JPG', alt: 'Charpente en acier pour cloisons de bureau' },
+        { src: 'images/projects/IMG_2532.JPG', alt: 'Murs de salle de réunion joints et prêts à être peints' },
       ],
     },
     {
