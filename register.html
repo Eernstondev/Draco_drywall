@@ -49,7 +49,7 @@
     <section class="page-head">
       <div class="container">
         <h1>Inscription à un cours</h1>
-        <p class="lead">Choisissez votre cours et votre session, puis ajoutez vos informations. Nous confirmons chaque inscription personnellement.</p>
+        <p class="lead">Réservez votre place en quelques étapes simples.</p>
       </div>
     </section>
 
@@ -59,7 +59,7 @@
           <form class="form" id="registration-form" data-form="registration" novalidate>
             <p class="form-alert" role="alert" tabindex="-1" data-form-alert hidden></p>
 
-            <fieldset class="form-section">
+            <fieldset class="form-section registration-course-section">
               <legend>Cours</legend>
               <div class="form-grid">
                 <div class="field field--full">
@@ -78,8 +78,10 @@
               </div>
             </fieldset>
 
-            <fieldset class="form-section">
-              <legend>Vos informations</legend>
+            <aside class="aside-panel registration-summary" aria-live="polite" data-registration-summary></aside>
+
+            <fieldset class="form-section registration-details-section">
+              <legend>Vos coordonnées</legend>
               <div class="form-grid">
                 <div class="field">
                   <label for="reg-first">Prénom</label>
@@ -101,23 +103,17 @@
                   <label for="reg-address">Adresse</label>
                   <input class="input" id="reg-address" name="address" type="text" autocomplete="street-address" required>
                 </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section registration-payment-section">
+              <legend>Mode de paiement</legend>
+              <div class="form-grid">
                 <div class="field field--full">
-                  <label>Paiement</label>
-                  <div class="payment-options" role="radiogroup" aria-label="Choisir le moyen de paiement">
-                    <label class="payment-option">
-                      <input type="radio" name="paymentMethod" value="Mon Cash" required>
-                      <span>Mon Cash</span>
-                    </label>
-                    <label class="payment-option">
-                      <input type="radio" name="paymentMethod" value="Natcash" required>
-                      <span>Natcash</span>
-                    </label>
-                  </div>
-                </div>
-                <div class="field field--full">
-                  <label for="reg-payment-account">Compte du paiement</label>
+                  <input type="hidden" name="paymentMethod" value="Mon Cash">
+                  <label for="reg-payment-account">Compte Mon Cash</label>
                   <input class="input" id="reg-payment-account" name="paymentAccount" type="text" readonly placeholder="Sélectionnez un moyen de paiement">
-                  <p class="field-hint">Mon Cash : +509 37 01 0055 • Natcash : +509 44 45 4869</p>
+                  <p class="field-hint">Envoyez le premier versement à ce compte.</p>
                 </div>
                 <div class="field field--full">
                   <label for="reg-receipt">Reçu de paiement</label>
@@ -127,13 +123,11 @@
               </div>
             </fieldset>
 
-            <div class="form-actions">
+            <div class="form-actions registration-actions">
               <button type="submit" class="btn btn--primary">S’inscrire</button>
               <p class="form-note">Nous utilisons vos informations uniquement pour gérer votre inscription et le suivi du paiement.</p>
             </div>
           </form>
-
-          <aside class="aside-panel" aria-live="polite" data-registration-summary></aside>
         </div>
 
         <div class="confirmation" tabindex="-1" data-registration-confirmation hidden></div>

@@ -12,6 +12,7 @@
     url: 'https://nuidkenlkqdjfcwymndg.supabase.co',
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51aWRrZW5sa3FkamZjd3ltbmRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NTgwODMsImV4cCI6MjEwNjUzNDA4M30.JmblDpx4J6SFijgJQ08xF2rgrNaYOepp2N3rrh6dDJU',
     storageBucket: 'training-receipts',
+    quoteBucket: 'quote-photos',
   };
 
   const REGISTRATION_FEES = {
@@ -20,7 +21,7 @@
   };
 
   const FORM_ENDPOINTS = {
-    quote: '',
+    quote: `${SUPABASE.url}/rest/v1/quote_requests`,
     contact: '',
     registration: `${SUPABASE.url}/rest/v1/training_registrations`,
   };
@@ -152,6 +153,27 @@
       window.open(url, '_blank');
       return { sent: true, via: 'whatsapp' };
     }
+
+    if (formKey === 'quote') {
+      const data = Object.fromEntries(formData);
+      const photos = formData.getAll('photos').filter((file) => file instanceof File && file.size > 0);
+      const photoPaths = await uploadQuotePhotos(photos);
+      const payload = {
+        first_name: String(data.firstName || '').trim(),
+        last_name: String(data.lastName || '').trim(),
+        email: String(data.email || '').trim(),
+        phone: String(data.phone || '').trim(),
+        project_type: String(data.projectType || ''),
+        property_type: String(data.propertyType || ''),
+        project_address: String(data.projectAddress || '').trim(),
+        description: String(data.description || '').trim(),
+        contact_method: String(data.contactMethod || ''),
+        photo_paths: photoPaths,
+      };
+      await insertSupabaseRecord(endpoint, payload);
+      return { sent: true };
+    }
+
     const response = await fetch(endpoint, {
       method: 'POST',
       body: formData,
@@ -342,7 +364,7 @@
 
   const quoteForm = document.querySelector('[data-form="quote"]');
   if (quoteForm) {
-    setupSimpleForm(quoteForm, 'quote', (d, photos) => `
+     setupSimpleForm(quoteForm, 'quote', (d, photos) => `
       <h2>Demande de devis envoyée</h2>
       <p>Merci, ${esc(d.firstName)}. Nous allons examiner votre projet${photos ? ` et les ${photos} ${photos === 1 ? 'photo' : 'photos'} que vous avez ajoutées` : ''}
          et vous contacter par ${esc(CONTACT_METHOD_LABELS[d.contactMethod] || 'courriel')}.</p>
@@ -386,24 +408,50 @@
     return `${SUPABASE.url}/storage/v1/object/public/${SUPABASE.storageBucket}/${path}`;
   }
 
-  async function insertRegistrationInSupabase(payload) {
-    const response = await fetch(FORM_ENDPOINTS.registration, {
+  async function uploadQuotePhotos(files) {
+    const paths = [];
+    for (const file of files) {
+      const safeName = file.name.trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '') || 'photo';
+      const path = `quote-requests/${crypto.randomUUID()}/${safeName}`;
+      const response = await fetch(`${SUPABASE.url}/storage/v1/object/${SUPABASE.quoteBucket}/${path}`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE.anonKey,
+          'Authorization': `Bearer ${SUPABASE.anonKey}`,
+          'Content-Type': file.type || 'application/octet-stream',
+        },
+        body: file,
+      });
+      if (!response.ok) {
+        const body = await response.text();
+        throw new Error(`Quote photo upload failed (${response.status}): ${body}`);
+      }
+      paths.push(path);
+    }
+    return paths;
+  }
+
+  async function insertSupabaseRecord(endpoint, payload) {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Prefer': 'return=minimal',
         'apikey': SUPABASE.anonKey,
         'Authorization': `Bearer ${SUPABASE.anonKey}`,
       },
       body: JSON.stringify([payload]),
     });
-
     if (!response.ok) {
       const body = await response.text();
       throw new Error(`Supabase insert failed (${response.status}): ${body}`);
     }
-
     return true;
+  }
+
+  async function insertRegistrationInSupabase(payload) {
+    return insertSupabaseRecord(FORM_ENDPOINTS.registration, payload);
   }
 
   function setupRegistration(form) {
@@ -413,12 +461,11 @@
     const summary = document.querySelector('[data-registration-summary]');
     const submit = form.querySelector('[type="submit"]');
     const idleLabel = submit.textContent;
-    const paymentRadios = form.querySelectorAll('input[name="paymentMethod"]');
+    const paymentMethod = form.querySelector('input[name="paymentMethod"]');
     const paymentAccount = form.querySelector('#reg-payment-account');
     const receiptInput = form.querySelector('#reg-receipt');
     const paymentByMethod = {
       'Mon Cash': '+509 37 01 0055',
-      Natcash: '+509 44 45 4869',
     };
 
     wireLiveValidation(form);
@@ -452,7 +499,7 @@
       const training = T.get(trainingSelect.value);
       const session = T.getSession(training, sessionSelect.value);
       if (!training) {
-        summary.innerHTML = '<h2>Votre cours</h2><p>Choisissez un cours et une session pour voir les détails ici.</p>';
+        summary.innerHTML = '<p class="registration-summary-eyebrow">Votre sélection</p><h2>Votre cours</h2><p class="registration-summary-empty">Choisissez un cours et une session pour afficher le récapitulatif.</p>';
         return;
       }
       const status = session ? T.seatStatus(session) : null;
@@ -460,22 +507,29 @@
       const participationFee = Number(training.price || REGISTRATION_FEES.initialPayment);
       const firstPayment = REGISTRATION_FEES.initialPayment;
       summary.innerHTML = `
+        <p class="registration-summary-eyebrow">Votre sélection</p>
         <h2>${esc(training.name)}</h2>
-        <dl class="facts">
-          <div><dt>Niveau</dt><dd>${esc(training.level)}</dd></div>
-          <div><dt>Durée</dt><dd>${esc(training.duration)}</dd></div>
-          <div><dt>Date</dt><dd>${session ? esc(Draco.formatDateRange(session.startDate, session.endDate)) : 'Choisissez une session'}</dd></div>
-          <div><dt>Horaire</dt><dd>${session ? esc(session.schedule) : '–'}</dd></div>
-          <div><dt>Lieu</dt><dd>${esc(session ? T.sessionLocation(training, session) : training.location)}</dd></div>
-          <div><dt>Disponibilité</dt><dd>${session ? esc(status.label) : '–'}</dd></div>
-          <div><dt>Inscription</dt><dd>${esc(formatGDS(registrationFee))}</dd></div>
-          <div><dt>Participation</dt><dd>${esc(formatGDS(participationFee))}</dd></div>
-          <div><dt>Premier versement</dt><dd>${esc(formatGDS(firstPayment))}</dd></div>
-        </dl>`;
+        <div class="registration-summary-session">
+          <strong>${session ? esc(Draco.formatDateRange(session.startDate, session.endDate)) : 'Choisissez une session'}</strong>
+          ${session ? `<span>${esc(session.schedule)} · ${esc(T.sessionLocation(training, session))}</span><span class="seats seats--${status.state}">${esc(status.label)}</span>` : ''}
+        </div>
+        <p class="registration-summary-payment"><span>Premier versement</span><strong>${esc(formatGDS(firstPayment))}</strong></p>
+        <details class="registration-summary-details">
+          <summary>Voir les détails du cours et des frais</summary>
+          <dl class="facts">
+            <div><dt>Niveau</dt><dd>${esc(training.level)}</dd></div>
+            <div><dt>Durée</dt><dd>${esc(training.duration)}</dd></div>
+            <div><dt>Lieu</dt><dd>${esc(session ? T.sessionLocation(training, session) : training.location)}</dd></div>
+            <div><dt>Disponibilité</dt><dd>${session ? esc(status.label) : '–'}</dd></div>
+            <div><dt>Frais d’inscription</dt><dd>${esc(formatGDS(registrationFee))}</dd></div>
+            <div><dt>Participation totale</dt><dd>${esc(formatGDS(participationFee))}</dd></div>
+            <div><dt>Premier versement</dt><dd>${esc(formatGDS(firstPayment))}</dd></div>
+          </dl>
+        </details>`;
     }
 
     function updatePaymentAccount() {
-      const selected = form.querySelector('input[name="paymentMethod"]:checked');
+      const selected = form.querySelector('input[name="paymentMethod"]:checked') || paymentMethod;
       if (!selected) {
         paymentAccount.value = '';
         paymentAccount.placeholder = 'Sélectionnez un moyen de paiement';
@@ -484,10 +538,6 @@
       paymentAccount.value = paymentByMethod[selected.value] || '';
       paymentAccount.placeholder = paymentByMethod[selected.value] || '';
     }
-
-    paymentRadios.forEach((radio) => {
-      radio.addEventListener('change', updatePaymentAccount);
-    });
 
     trainingSelect.addEventListener('change', () => {
       fillSessions(T.get(trainingSelect.value), null);
@@ -507,7 +557,7 @@
 
       const chosenTraining = T.get(trainingSelect.value);
       const chosenSession = T.getSession(chosenTraining, sessionSelect.value);
-      const chosenPayment = form.querySelector('input[name="paymentMethod"]:checked');
+      const chosenPayment = form.querySelector('input[name="paymentMethod"]:checked') || paymentMethod;
       if (!chosenTraining || !chosenSession || !chosenPayment) {
         showFormError(form, 'Choisissez un cours, une session et un moyen de paiement avant de continuer.');
         return;

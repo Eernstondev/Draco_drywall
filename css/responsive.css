@@ -106,6 +106,44 @@
   .aside-panel { padding: 24px 18px; }
   .nav-cta { width: 100%; }
   .footer-grid { gap: 30px; }
+
+  .training-hero-actions .btn { width: 100%; min-height: 54px; }
+  .training-process .step { padding: 18px; }
+  .training-course-list { gap: 48px; }
+  .training-course-list .course { gap: 22px; padding-top: 24px; }
+  .training-course-list .course-facts { padding: 20px; }
+  .training-course-list .course-facts .facts > div {
+    grid-template-columns: minmax(80px, 36%) minmax(0, 1fr);
+    gap: 12px;
+  }
+  .training-course-list .course-sessions { min-width: 0; }
+  .training-course-list .training-session {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px;
+    border: 1px solid var(--c-line);
+    background: var(--c-paper);
+  }
+  .training-session .training-label {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--c-amber);
+    font-size: var(--fs-small);
+    font-weight: 600;
+  }
+  .training-session .session-date { font-family: var(--f-display); font-size: 1.375rem; }
+  .training-session .seats-bar { max-width: none; }
+  .training-session-action .btn { width: 100%; min-height: 52px; }
+  .training-course-list .course-program { padding-top: 20px; }
+
+  #registration-form.form { gap: 28px; }
+  #registration-form .form-grid { gap: 16px; }
+  #registration-form .form-section > legend { margin-bottom: 14px; font-size: 1.375rem; }
+  #registration-form .registration-summary { gap: 12px; padding: 18px; }
+  #registration-form .registration-summary h2 { font-size: 1.25rem; }
+  #registration-form .registration-summary-payment { align-items: center; padding: 12px; }
+  #registration-form .registration-summary-payment strong { font-size: 1.25rem; }
+  #registration-form .registration-actions { display: grid; gap: 10px; }
 }
 
 /* Full-width buttons on small phones */
@@ -123,6 +161,8 @@
   .service-grid,
   .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+  .course-list .course { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .aside-panel .steps { grid-template-columns: 1fr; }
 
@@ -137,6 +177,25 @@
   .approach { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .preview-item { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+}
+
+@media (min-width: 600px) and (max-width: 767.98px) {
+  .training-course-list .training-session {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 20px;
+    border: 1px solid var(--c-line);
+    background: var(--c-paper);
+  }
+  .training-session .training-label {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--c-amber);
+    font-size: var(--fs-small);
+    font-weight: 600;
+  }
+  .training-session .session-date { font-family: var(--f-display); font-size: 1.375rem; }
+  .training-session-action .btn { width: 100%; min-height: 52px; }
 }
 
 /* ---------- ≥ 768px ---------- */
@@ -178,8 +237,19 @@
   .training-preview-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
 
   .course { grid-template-columns: minmax(0, 8fr) minmax(260px, 4fr); }
+  .course-list .course { grid-template-columns: minmax(0, 8fr) minmax(260px, 4fr); }
 
   .form-layout { grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr); }
+  [data-registration-layout] { grid-template-columns: minmax(0, 1fr); }
+  #registration-form { grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr); }
+  #registration-form .registration-course-section,
+  #registration-form .registration-details-section,
+  #registration-form .registration-actions { grid-column: 1; }
+  #registration-form .registration-summary {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
   .aside-panel { position: sticky; top: calc(var(--header-h) + 24px); }
 
   .split { grid-template-columns: repeat(2, minmax(0, 1fr)); }

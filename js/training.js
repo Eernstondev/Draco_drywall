@@ -15,7 +15,7 @@
       level: 'Débutant',
       duration: '4 week-ends (8 jours) + 15 jours de pratique supervisée',
       price: 21500,
-      location: 'Amérique, Pétion-Ville, Berthé',
+      location: 'America',
       description:
         'Les cours débuteront le 7 novembre au 29 novembre en week-ends. Les pratiques se dérouleront durant toute la semaine. Vous apprendrez à mesurer, couper, poser et fixer les plaques de cloison sèche sur les murs et plafonds, puis vous quitterez le cours en sachant poser proprement et en toute sécurité.',
       prerequisites: 'Aucune expérience requise.',
@@ -87,6 +87,10 @@
       <span class="seats-bar" aria-hidden="true"><span style="width:${Math.min(filled, 100)}%"></span></span>`;
   }
 
+  function formatGDS(value) {
+    return `${Number(value).toLocaleString('fr-FR')} GDS`;
+  }
+
   function sessionHTML(training, session) {
     const status = seatStatus(session);
     const action = status.state === 'full'
@@ -95,12 +99,24 @@
             aria-label="S’inscrire à ${esc(training.name)}, ${esc(Draco.formatDateRange(session.startDate, session.endDate))}">S’inscrire</a>`;
 
     return `
-      <li class="session">
-        <span class="session-date">${esc(Draco.formatDateRange(session.startDate, session.endDate))}</span>
-        <span class="session-cell">${esc(session.schedule)}</span>
-        <span class="session-cell">${esc(sessionLocation(training, session))}</span>
-        <span>${seatsHTML(session)}</span>
-        <span>${action}</span>
+      <li class="session training-session">
+        <div class="training-session-primary">
+          <span class="training-label">Prochaine session</span>
+          <span class="session-date">${esc(Draco.formatDateRange(session.startDate, session.endDate))}</span>
+        </div>
+        <div class="training-session-detail">
+          <span class="training-label">Horaire</span>
+          <span class="session-cell">${esc(session.schedule)}</span>
+        </div>
+        <div class="training-session-detail">
+          <span class="training-label">Lieu</span>
+          <span class="session-cell">${esc(sessionLocation(training, session))}</span>
+        </div>
+        <div class="training-session-detail training-session-availability">
+          <span class="training-label">Disponibilité</span>
+          <span>${seatsHTML(session)}</span>
+        </div>
+        <div class="training-session-action">${action}</div>
       </li>`;
   }
 
@@ -122,13 +138,9 @@
           <h3 class="course-title" id="${esc(training.id)}-title">${esc(training.name)}</h3>
           <p class="course-desc">${esc(training.description)}</p>
           ${training.prerequisites ? `<p class="course-note">${esc(training.prerequisites)}</p>` : ''}
-          <h4>Ce que couvre le cours</h4>
-          <ul class="dash-list curriculum">
-            ${training.curriculum.map((item) => `<li>${esc(item)}</li>`).join('')}
-          </ul>
         </div>
         <aside class="course-facts" aria-label="Détails du cours">
-          <p class="price">${esc(Draco.formatPrice(training.price))}</p>
+          <p class="price">${esc(formatGDS(training.price))}</p>
           <p class="price-note">par participant</p>
           <dl class="facts">
             <div><dt>Niveau</dt><dd>${esc(training.level)}</dd></div>
@@ -137,9 +149,15 @@
             <div><dt>Sessions</dt><dd>${sessions.length || 'Aucune date prévue'}</dd></div>
           </dl>
         </aside>
-        <div class="course-sessions">
-          <h4>Sessions</h4>
+        <div class="course-sessions" id="${esc(training.id)}-sessions">
+          <h4>Dates et inscription</h4>
           ${sessionsBlock}
+        </div>
+        <div class="course-program">
+          <h4>Le programme</h4>
+          <ul class="dash-list curriculum">
+            ${training.curriculum.map((item) => `<li>${esc(item)}</li>`).join('')}
+          </ul>
         </div>
       </article>`;
   }
@@ -158,7 +176,7 @@
           <p class="preview-meta">${esc(nextText)}</p>
         </div>
         <div class="preview-side">
-          <span class="preview-price">${esc(Draco.formatPrice(training.price))}</span>
+          <span class="preview-price">${esc(formatGDS(training.price))}</span>
           ${next ? `<a class="btn btn--light btn--sm" href="${esc(registerUrl(training, next))}" aria-label="S’inscrire à ${esc(training.name)}">S’inscrire</a>` : ''}
         </div>
       </li>`;
