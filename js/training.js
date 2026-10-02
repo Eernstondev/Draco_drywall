@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Draco Prestige Drywall — training.js
+   Maison Clark Drywall — training.js
    Training catalogue (edit TRAININGS below) + rendering for:
      [data-training-list]     full catalogue (training.html)
      [data-training-preview]  short list (index.html)
@@ -8,87 +8,75 @@
 (function (Draco) {
   'use strict';
 
-  /* ------------------------------------------------------------------------
-     TRAININGS — edit here to add, change or remove courses and sessions.
-
-     price       number in Draco.config.currency (set to null to show [PRICE])
-     location    default location; a session can override it with its own
-     sessions    startDate / endDate as "YYYY-MM-DD"
-                 capacity = total seats, enrolled = seats already taken
-                 seats left = capacity - enrolled (calculated automatically)
-                 sessions whose end date has passed are hidden automatically
-
-     Prices, dates and seat numbers below are EXAMPLES — replace them.
-     ------------------------------------------------------------------------ */
   const TRAININGS = [
     {
-      id: 'installation-fundamentals',
-      name: 'Drywall Installation Fundamentals',
-      level: 'Beginner',
-      duration: '2 days (16 hours)',
+      id: 'installation-fondamentaux',
+      name: 'Fondamentaux de la pose de cloisons sèches',
+      level: 'Débutant',
+      duration: '2 jours (16 heures)',
       price: 450,
-      location: '[TRAINING LOCATION]',
+      location: '[LIEU DE FORMATION]',
       description:
-        'Learn to measure, cut, hang and fasten drywall on walls and ceilings. You work on full-size framed assemblies and leave able to hang a room cleanly and safely.',
-      prerequisites: 'No experience required.',
+        'Apprenez à mesurer, couper, poser et fixer les plaques de cloison sèche sur les murs et plafonds. Vous travaillez sur des assemblages de taille réelle et quittez le cours en sachant poser une pièce proprement et en toute sécurité.',
+      prerequisites: 'Aucune expérience requise.',
       curriculum: [
-        'Tools, materials and board types',
-        'Reading a layout and planning joints',
-        'Measuring and cutting around openings and outlets',
-        'Hanging walls and ceilings',
-        'Screw patterns, spacing and depth',
-        'Installing corner bead',
-        'Lifting, handling and job-site safety',
+        'Outils, matériaux et types de plaques',
+        'Lecture d’un plan et organisation des joints',
+        'Mesure et découpe autour des ouvertures et prises',
+        'Pose de murs et de plafonds',
+        'Motifs de vis, espacement et profondeur',
+        'Installation des cornières',
+        'Levage, manutention et sécurité sur chantier',
       ],
       sessions: [
-        { id: 'if-2026-11', startDate: '2026-11-07', endDate: '2026-11-08', schedule: '8:00 AM – 4:00 PM', capacity: 10, enrolled: 4 },
-        { id: 'if-2026-12', startDate: '2026-12-05', endDate: '2026-12-06', schedule: '8:00 AM – 4:00 PM', capacity: 10, enrolled: 9 },
-        { id: 'if-2027-01', startDate: '2027-01-16', endDate: '2027-01-17', schedule: '8:00 AM – 4:00 PM', capacity: 10, enrolled: 0 },
+        { id: 'if-2026-11', startDate: '2026-11-07', endDate: '2026-11-08', schedule: '8:00 – 16:00', capacity: 10, enrolled: 4 },
+        { id: 'if-2026-12', startDate: '2026-12-05', endDate: '2026-12-06', schedule: '8:00 – 16:00', capacity: 10, enrolled: 9 },
+        { id: 'if-2027-01', startDate: '2027-01-16', endDate: '2027-01-17', schedule: '8:00 – 16:00', capacity: 10, enrolled: 0 },
       ],
     },
     {
-      id: 'taping-finishing',
-      name: 'Drywall Taping & Finishing',
-      level: 'Intermediate',
-      duration: '3 days (24 hours)',
+      id: 'jointoiement-finition',
+      name: 'Pose de joints et finition',
+      level: 'Intermédiaire',
+      duration: '3 jours (24 heures)',
       price: 650,
-      location: '[TRAINING LOCATION]',
+      location: '[LIEU DE FORMATION]',
       description:
-        'Taping, coating and sanding to a paint-ready surface. Covers paper and mesh tape, compound choice, feathering, corners and finish levels 1 to 5.',
-      prerequisites: 'Recommended: basic hanging experience or the Installation Fundamentals course.',
+        'Pose de bandes, application d’enduit et ponçage jusqu’à une surface prête à peindre. Comprend les bandes papier et mailles, le choix d’enduit, l’égalisation, les coins et les niveaux de finition 1 à 5.',
+      prerequisites: 'Recommandé : expérience de base en pose ou cours Fondamentaux de la pose de cloisons sèches.',
       curriculum: [
-        'Compound types and mixing',
-        'Paper tape versus mesh tape',
-        'Taping flat seams, butt joints and inside corners',
-        'Coating corner bead',
-        'Feathering and sanding technique',
-        'Finish levels 1 to 5 and when to use each',
-        'Spotting and fixing defects before paint',
+        'Types d’enduit et mélange',
+        'Bande papier vs bande maillée',
+        'Jointoiement sur assemblages plans, joints de butée et coins intérieurs',
+        'Application d’enduit sur cornières',
+        'Technique de lissage et de ponçage',
+        'Niveaux de finition 1 à 5 et usages',
+        'Détection et correction des défauts avant la peinture',
       ],
       sessions: [
-        { id: 'tf-2026-11', startDate: '2026-11-18', endDate: '2026-11-20', schedule: '8:00 AM – 4:00 PM', capacity: 8, enrolled: 8 },
-        { id: 'tf-2026-12', startDate: '2026-12-09', endDate: '2026-12-11', schedule: '8:00 AM – 4:00 PM', capacity: 8, enrolled: 3 },
+        { id: 'tf-2026-11', startDate: '2026-11-18', endDate: '2026-11-20', schedule: '8:00 – 16:00', capacity: 8, enrolled: 8 },
+        { id: 'tf-2026-12', startDate: '2026-12-09', endDate: '2026-12-11', schedule: '8:00 – 16:00', capacity: 8, enrolled: 3 },
       ],
     },
     {
-      id: 'repair-patching',
-      name: 'Drywall Repair & Patching',
-      level: 'Beginner',
-      duration: '1 day (8 hours)',
+      id: 'reparation-retouche',
+      name: 'Réparation et retouche des cloisons sèches',
+      level: 'Débutant',
+      duration: '1 jour (8 heures)',
       price: 180,
-      location: '[TRAINING LOCATION]',
+      location: '[LIEU DE FORMATION]',
       description:
-        'Fix holes, cracks, nail pops and water damage so the repair disappears after paint. Suited to new tradespeople, maintenance staff and property managers.',
-      prerequisites: 'No experience required.',
+        'Réparez les trous, fissures, vis saillantes et dommages causés par l’eau pour que la correction disparaît après la peinture. Convient aux nouveaux travailleurs, au personnel de maintenance et aux gestionnaires immobiliers.',
+      prerequisites: 'Aucune expérience requise.',
       curriculum: [
-        'Assessing damage and finding the cause',
-        'Small holes, dents and cracks',
-        'Patch methods for medium holes',
-        'Cutting out and replacing damaged sections',
-        'Matching texture and blending into the existing finish',
+        'Évaluation des dommages et identification de la cause',
+        'Petits trous, bosses et fissures',
+        'Méthodes de retouche pour trous moyens',
+        'Découpe et remplacement des sections endommagées',
+        'Mise en correspondance de la texture et intégration à la finition existante',
       ],
       sessions: [
-        { id: 'rp-2026-11', startDate: '2026-11-28', endDate: '2026-11-28', schedule: '9:00 AM – 5:00 PM', capacity: 12, enrolled: 5 },
+        { id: 'rp-2026-11', startDate: '2026-11-28', endDate: '2026-11-28', schedule: '9:00 – 17:00', capacity: 12, enrolled: 5 },
       ],
     },
   ];
@@ -96,7 +84,6 @@
   const LOW_SEATS_THRESHOLD = 3;
   const esc = Draco.escapeHTML;
 
-  /* ---------- Data helpers ---------- */
   function startOfToday() {
     const d = new Date();
     d.setHours(0, 0, 0, 0);
@@ -109,8 +96,8 @@
 
   function seatStatus(session) {
     const left = seatsLeft(session);
-    if (left === 0) return { left, state: 'full', label: 'Full' };
-    const label = `${left} ${left === 1 ? 'seat' : 'seats'} left`;
+    if (left === 0) return { left, state: 'full', label: 'Complet' };
+    const label = `${left} ${left === 1 ? 'place' : 'places'} restante${left === 1 ? '' : 's'}`;
     return { left, state: left <= LOW_SEATS_THRESHOLD ? 'low' : 'open', label };
   }
 
@@ -139,7 +126,6 @@
     return `register.html?${params}`;
   }
 
-  /* ---------- Rendering: full catalogue ---------- */
   function seatsHTML(session) {
     const status = seatStatus(session);
     const filled = session.capacity ? Math.round((session.enrolled / session.capacity) * 100) : 100;
@@ -151,9 +137,9 @@
   function sessionHTML(training, session) {
     const status = seatStatus(session);
     const action = status.state === 'full'
-      ? `<span class="btn btn--outline btn--sm" aria-disabled="true">Full</span>`
+      ? `<span class="btn btn--outline btn--sm" aria-disabled="true">Complet</span>`
       : `<a class="btn btn--primary btn--sm" href="${esc(registerUrl(training, session))}"
-            aria-label="Register for ${esc(training.name)}, ${esc(Draco.formatDateRange(session.startDate, session.endDate))}">Register</a>`;
+            aria-label="S’inscrire à ${esc(training.name)}, ${esc(Draco.formatDateRange(session.startDate, session.endDate))}">S’inscrire</a>`;
 
     return `
       <li class="session">
@@ -170,33 +156,32 @@
     const sessionsBlock = sessions.length
       ? `<ul class="sessions">
            <li class="sessions-head" aria-hidden="true">
-             <span>Date</span><span>Schedule</span><span>Location</span><span>Availability</span><span></span>
+             <span>Date</span><span>Horaire</span><span>Lieu</span><span>Disponibilité</span><span></span>
            </li>
            ${sessions.map((s) => sessionHTML(training, s)).join('')}
          </ul>`
-      : `<p class="empty-state">No sessions are scheduled right now.
-           <a class="text-link" href="contact.html">Contact us</a> to hear about the next dates.</p>`;
+      : `<p class="empty-state">Aucune session n’est prévue pour le moment. <a class="text-link" href="contact.html">Contactez-nous</a> pour connaître les prochaines dates.</p>`;
 
     return `
       <article class="course" id="${esc(training.id)}" aria-labelledby="${esc(training.id)}-title">
         <div class="course-main">
-          <p class="course-meta">${esc(training.level)} level, ${esc(training.duration)}</p>
+          <p class="course-meta">Niveau ${esc(training.level)}, ${esc(training.duration)}</p>
           <h3 class="course-title" id="${esc(training.id)}-title">${esc(training.name)}</h3>
           <p class="course-desc">${esc(training.description)}</p>
           ${training.prerequisites ? `<p class="course-note">${esc(training.prerequisites)}</p>` : ''}
-          <h4>What the course covers</h4>
+          <h4>Ce que couvre le cours</h4>
           <ul class="dash-list curriculum">
             ${training.curriculum.map((item) => `<li>${esc(item)}</li>`).join('')}
           </ul>
         </div>
-        <aside class="course-facts" aria-label="Course details">
+        <aside class="course-facts" aria-label="Détails du cours">
           <p class="price">${esc(Draco.formatPrice(training.price))}</p>
-          <p class="price-note">per participant</p>
+          <p class="price-note">par participant</p>
           <dl class="facts">
-            <div><dt>Level</dt><dd>${esc(training.level)}</dd></div>
-            <div><dt>Duration</dt><dd>${esc(training.duration)}</dd></div>
-            <div><dt>Location</dt><dd>${esc(training.location)}</dd></div>
-            <div><dt>Sessions</dt><dd>${sessions.length || 'None scheduled'}</dd></div>
+            <div><dt>Niveau</dt><dd>${esc(training.level)}</dd></div>
+            <div><dt>Durée</dt><dd>${esc(training.duration)}</dd></div>
+            <div><dt>Lieu</dt><dd>${esc(training.location)}</dd></div>
+            <div><dt>Sessions</dt><dd>${sessions.length || 'Aucune date prévue'}</dd></div>
           </dl>
         </aside>
         <div class="course-sessions">
@@ -206,32 +191,29 @@
       </article>`;
   }
 
-  /* ---------- Rendering: home preview ---------- */
   function previewHTML(training) {
     const next = upcomingSessions(training).find((s) => seatsLeft(s) > 0);
     const nextText = next
-      ? `Next session ${Draco.formatDateRange(next.startDate, next.endDate)}, ${seatStatus(next).label.toLowerCase()}`
-      : 'New dates coming soon';
+      ? `Prochaine session ${Draco.formatDateRange(next.startDate, next.endDate)}, ${seatStatus(next).label.toLowerCase()}`
+      : 'Nouvelles dates prochainement';
 
     return `
       <li class="preview-item">
         <div>
           <h3><a href="training.html#${esc(training.id)}">${esc(training.name)}</a></h3>
-          <p class="preview-meta">${esc(training.level)} level, ${esc(training.duration)}</p>
+          <p class="preview-meta">Niveau ${esc(training.level)}, ${esc(training.duration)}</p>
           <p class="preview-meta">${esc(nextText)}</p>
         </div>
         <div class="preview-side">
           <span class="preview-price">${esc(Draco.formatPrice(training.price))}</span>
-          ${next ? `<a class="btn btn--light btn--sm" href="${esc(registerUrl(training, next))}" aria-label="Register for ${esc(training.name)}">Register</a>` : ''}
+          ${next ? `<a class="btn btn--light btn--sm" href="${esc(registerUrl(training, next))}" aria-label="S’inscrire à ${esc(training.name)}">S’inscrire</a>` : ''}
         </div>
       </li>`;
   }
 
-  /* ---------- Mount ---------- */
   const list = document.querySelector('[data-training-list]');
   if (list) {
     list.innerHTML = TRAININGS.map(courseHTML).join('');
-    // Re-apply the #anchor scroll now that the target exists
     if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
   }
 
@@ -240,7 +222,6 @@
     preview.innerHTML = `<ul class="preview-list">${TRAININGS.map(previewHTML).join('')}</ul>`;
   }
 
-  /* ---------- Public API ---------- */
   Draco.trainings = {
     all: TRAININGS,
     get: getTraining,
